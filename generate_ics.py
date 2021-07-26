@@ -53,8 +53,10 @@ def create_ics(input_filename = None):
         print()
 
     if(len(added_stocks) != 0):
-        with open("next_earnings_calendar.ics", mode="w") as output_file:
+        output_filename = "next_earnings_calendar.ics"
+        with open(output_filename, mode="w") as output_file:
             output_file.writelines(c)
+            print(f"{output_filename} created with {len(added_stocks)} earnings dates.")
     else:
         print("No stocks were added to the calendar so no earnings calendar was created.")
 
