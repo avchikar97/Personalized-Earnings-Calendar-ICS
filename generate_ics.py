@@ -50,7 +50,7 @@ def create_ics(input_filename = None):
                     print("Not added.")
         else:
             print(f"{stock_name} ({stock_country}) has already been added to the calendar")
-        print()
+        print() # makes the print a little easier on the eyes
 
     if(len(added_stocks) != 0):
         output_filename = "next_earnings_calendar.ics"
@@ -60,7 +60,6 @@ def create_ics(input_filename = None):
     else:
         print("No stocks were added to the calendar so no earnings calendar was created.")
 
-    pass
 
 if __name__ == "__main__":
     if(len(sys.argv) == 1):
