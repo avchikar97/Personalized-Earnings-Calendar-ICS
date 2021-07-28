@@ -3,8 +3,16 @@ import ics # for creating the ICS file
 import datetime
 import sys
 from os import path
+import argparse
 
-def create_ics(input_filename = None):
+parser = argparse.ArgumentParser()
+parser.add_argument("-f",  "--input-file", help="location of the input file")
+parser.add_argument("-o", "--output-file", help="location of the generated output file", default="next_earnings_calendar.ics")
+args = parser.parse_args()
+output_file = args.output_file
+input_filename = args.input_file
+
+def create_ics(output_filename, input_filename=None):
     c = ics.Calendar(creator="Earnings Calendar Invites")
     added_stocks = []
     if(input_filename != None):
@@ -53,7 +61,6 @@ def create_ics(input_filename = None):
         print() # makes the print a little easier on the eyes
 
     if(len(added_stocks) != 0):
-        output_filename = "next_earnings_calendar.ics"
         with open(output_filename, mode="w") as output_file:
             output_file.writelines(c)
             print(f"{output_filename} created with {len(added_stocks)} earnings dates.")
@@ -62,11 +69,16 @@ def create_ics(input_filename = None):
 
 
 if __name__ == "__main__":
-    if(len(sys.argv) == 1):
-        create_ics()
-    elif(len(sys.argv) > 1):
-        if(path.exists(sys.argv[1]) and path.isfile(sys.argv[1])):
-            create_ics(sys.argv[1])
+    if(args.input_file is not None and path.exists(args.input_file) and path.isfile(args.input_file)):
+        if(args.output_file is not None):
+            create_ics(output_filename=args.output_file, input_filename=args.input_file)
         else:
-            print(f"File {sys.argv[1]} does not exist. Going into console input mode.")
-            create_ics()
+            create_ics(args.input_file)
+    elif(args.output_file is not None and args.input_file is None):
+        create_ics(output_filename=args.output_file)
+    else:
+        print(f"File {args.input_file} does not exist. Going into console input mode.")
+        create_ics(output_filename=args.output_file)
+    
+    
+    
