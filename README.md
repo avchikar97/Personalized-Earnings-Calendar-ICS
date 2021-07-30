@@ -13,6 +13,6 @@ Python script to easily create calendar events for the next earnings dates of in
 3. To use in file input mode:
 
     3a. Make sure your input file has the same format as inputs.example.txt (one ticker symbol per line)
- 
-    3b. Run `python3 generate_ics.py inputs.txt` - the input file may be named anything
-4. Note that on each new run the output file is overwritten
+
+    3b. Run `python3 generate_ics.py -f inputs.txt` - the input file may be named anything
+4. The output file may be specified with the `-o` parameter (e.g. `python3 generate_ics.py -o output.ics` or `python3 generate_ics.py -f inputs.txt -o output.ics`). The default output file is `next_earnings_calendar.ics`.
