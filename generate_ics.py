@@ -70,14 +70,11 @@ def create_ics(output_filename, input_filename=None):
 
 if __name__ == "__main__":
     if(args.input_file is not None):
-            if(path.exists(args.input_file) and path.isfile(args.input_file)):
-                create_ics(output_filename=args.output_file, input_filename=args.input_file)
-            else:
-                print(f"File {args.file_name} does not exist. Goint into console input mode.")
+        if(path.exists(args.input_file) and path.isfile(args.input_file)):
+            create_ics(output_filename=args.output_file, input_filename=args.input_file)
+        else:
+            print(f"File {args.input_file} does not exist. Entering console interactive mode.")
+            create_ics(output_filename=args.output_file)
     else:
-        print(f"You didn't specify a input file. Going into console input mode.")
+        print(f"You didn't specify a input file. Entering interactive mode.")
         create_ics(output_filename=args.output_file)
-
-    
-    
-    
