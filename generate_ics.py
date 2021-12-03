@@ -34,6 +34,7 @@ def create_ics(output_filename, input_filename=None):
         ### Getting the earnings date information and adding it to the calendar
         if (stock_name) not in added_stocks:
             next_earnings_unix = 0;
+            print(f"Attempting to find {stock_name}")
             try:
                 ### Getting the information
                 next_earnings_unix = int(yec.get_next_earnings_date(stock_name))
